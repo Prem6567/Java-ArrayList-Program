@@ -1,0 +1,90 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> names = new ArrayList<>();
+
+        int choice;
+
+        System.out.println("===== ARRAYLIST MANAGEMENT SYSTEM =====");
+
+        do {
+            System.out.println("\n1. Add Name");
+            System.out.println("2. View All Names");
+            System.out.println("3. Search Name");
+            System.out.println("4. Remove Name");
+            System.out.println("5. Total Names");
+            System.out.println("6. Exit");
+
+            System.out.print("\nEnter your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+
+                case 1:
+                    System.out.print("Enter name: ");
+                    String name = sc.nextLine();
+
+                    if (!name.trim().isEmpty()) {
+                        names.add(name);
+                        System.out.println("Name added successfully!");
+                    } else {
+                        System.out.println("Name cannot be empty!");
+                    }
+                    break;
+
+                case 2:
+                    if (names.isEmpty()) {
+                        System.out.println("No names available.");
+                    } else {
+                        System.out.println("\n===== NAME LIST =====");
+
+                        for (int i = 0; i < names.size(); i++) {
+                            System.out.println((i + 1) + ". " + names.get(i));
+                        }
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter name to search: ");
+                    String search = sc.nextLine();
+
+                    if (names.contains(search)) {
+                        System.out.println("Name found successfully!");
+                    } else {
+                        System.out.println("Name not found.");
+                    }
+                    break;
+
+                case 4:
+                    System.out.print("Enter name to remove: ");
+                    String remove = sc.nextLine();
+
+                    if (names.remove(remove)) {
+                        System.out.println("Name removed successfully!");
+                    } else {
+                        System.out.println("Name not found.");
+                    }
+                    break;
+
+                case 5:
+                    System.out.println("Total Names: " + names.size());
+                    break;
+
+                case 6:
+                    System.out.println("Thank you for using the system!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice! Try again.");
+            }
+
+        } while (choice != 6);
+
+        sc.close();
+    }
+}
